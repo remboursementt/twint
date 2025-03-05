@@ -6,10 +6,10 @@
     <title>Twint</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #fff; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #fff; transition: opacity 0.5s ease-in-out; }
         
         /* شاشة البداية */
-        #splash-screen { position: fixed; width: 100%; height: 100%; background: black; display: flex; justify-content: center; align-items: center; }
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; justify-content: center; align-items: center; z-index: 1000; transition: opacity 0.5s ease-in-out; }
         #splash-screen img { width: 150px; }
 
         /* الصفحة الرئيسية */
@@ -24,7 +24,7 @@
 
     <!-- شاشة البداية -->
     <div id="splash-screen">
-        <img src="unnamed.png" alt="Twint Logo">
+        <img src="images (2).png" alt="Twint Logo">
     </div>
 
     <!-- الصفحة الرئيسية -->
@@ -38,11 +38,16 @@
     </div>
 
     <script>
-        // إخفاء شاشة البداية بعد ثانيتين
-        setTimeout(() => {
-            document.getElementById('splash-screen').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-        }, 2000);
+        // التأكد من تحميل الصفحة بالكامل قبل تنفيذ الإخفاء
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('splash-screen').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                }, 500); // وقت إضافي لتأثير التلاشي
+            }, 2000);
+        };
 
         // التحقق من صحة الإدخال
         function validateInput() {
